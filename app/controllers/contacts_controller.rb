@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.new(params_contact)
+    @contact = current_user.contacts.new(params_contact)
     if @contact.save
       redirect_to contacts_path, notice: "O contato #{@contact.name} #{@contact.last_name} foi salvo com sucesso!"
     else

@@ -1,5 +1,6 @@
 <h1>Contacts</h1>
 
+
 <div style="margin: 0 3%">
 	<table style="width: 100%;" cellspacing="0" cellpadding="0">
 		<tbody>
@@ -11,8 +12,8 @@
                 <td><%= link_to "Novo Contato", new_contact_path%></td>
             </tr>
             <th>Id</th>
+            <th>Usuário_id</th>
             <th>Nome</th>
-            <th>Sobrenome</th>
             <th>Telefone</th>
             <th></th>
             <th></th>
@@ -21,8 +22,11 @@
             <% @contacts.each do |contact| %>
             <tr>
                 <td><%= contact.id %></td>
-                <td><%= contact.name %></td>
-                <td><%= contact.last_name %></td>
+                <td><%= contact.user&.id %> </td>
+                <td>
+                    <%= contact.name %>
+                    <%= contact.last_name %>
+                </td>
                 <td><%= contact.number %></td>
                 <td><%= link_to "Edit", edit_contact_path(contact) %></td>
                 <td>remover</td>
