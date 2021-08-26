@@ -1,22 +1,2 @@
-<h1>New Contacts</h1>
-
-<%= form_for(@contact) do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :number %>
-    <%= f.text_field :number %>
-  </div>
-
-    <div class="actions">
-    <%= f.submit "Salvar" %>
-  </div>
-<% end %>
+<%= render partial: "contacts/shared/form",
+           locals: {action: "Novo Contato"} %>

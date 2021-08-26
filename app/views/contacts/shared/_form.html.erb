@@ -1,0 +1,30 @@
+<h1><%= action %></h1>
+
+<% if @contact.errors.any? %>
+  <ul>
+    <% @contact.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(@contact) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number %>
+    <%= f.text_field :number %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar" %>
+  </div>
+<% end %>
