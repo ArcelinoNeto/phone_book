@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_contact, only: [:edit, :update, :show, :destory]
 
   def index
     @contacts = Contact.all
@@ -12,7 +13,7 @@ class ContactsController < ApplicationController
   def create
     @contact = current_user.contacts.new(params_contact)
     if @contact.save
-      redirect_to contacts_path, notice: "O contato #{@contact.name} #{@contact.last_name} foi salvo com sucesso!"
+      redirect_to contacts_path, notice: "O contato (#{@contact.name} #{@contact.last_name}) foi salvo com sucesso!"
     else
       render :new
     end
@@ -22,11 +23,20 @@ class ContactsController < ApplicationController
   end
 
   def update
+    if @contact.update(params_contact)
+      redirect_to contacts_path, notice: "O contato (#{@contact.name} #{@contact.last_name}) foi alterado com sucesso!"
+    else
+      render :edit
+    end
   end
 
   private
 
-  def params_contact
-    params.require(:contact).permit(:name, :last_name, :number, :user_id)
-  end
+    def params_contact
+      params.require(:contact).permit(:name, :last_name, :number, :user_id)
+    end
+
+    def set_contact
+      @contact = Contact.find(params[:id])
+    end
 end
