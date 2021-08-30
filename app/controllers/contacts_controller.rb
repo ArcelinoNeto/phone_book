@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_contact, only: [:edit, :update, :show, :destory]
+    before_action :set_contact, only: [:edit, :update, :show, :destroy]
 
   def index
     @contacts = Contact.all
@@ -27,6 +27,14 @@ class ContactsController < ApplicationController
       redirect_to contacts_path, notice: "O contato (#{@contact.name} #{@contact.last_name}) foi alterado com sucesso!"
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @contact.destroy
+      redirect_to contacts_path, notice: "O contato (#{@contact.name} #{@contact.last_name}) foi apagado com sucesso!"
+    else
+      render :destroy
     end
   end
 

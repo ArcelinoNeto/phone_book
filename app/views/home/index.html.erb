@@ -1,5 +1,10 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Index</h1>
+
+<% if notice %>
+    <div style="text-">
+        <%= notice %>
+    </div>
+<% end %>
 
 <%= link_to "Logar", new_user_session_path %>
 
