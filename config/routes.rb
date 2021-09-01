@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  get 'users/index'
   get 'contacts/index'
-  devise_for :users, :skip => [:registrations]
+  devise_for :users
   get 'home/index'
   root 'home#index'
 
