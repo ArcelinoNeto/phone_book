@@ -1,4 +1,4 @@
-<h1>Contacts</h1>
+<h1>Contact List</h1>
 
 <% if notice %>
     <div style="text-">
@@ -12,25 +12,23 @@
             <tr>
                 <td><%= link_to "Inicio", root_path %></td>
                 <td>
-                    <%= current_user.email%>
-                    (<%= current_user.id%>)
+                    <%= current_user.name%>
+                    (<%= current_user.email%>)
                 </td>
                 <td><%= link_to "Sair", destroy_user_session_path, method: :delete %></td>
-                <td></td>
+                <td><%= link_to "Usuários", users_index_path %></td>
                 <td><%= link_to "Novo Contato", new_contact_path%></td>
             </tr>
             <th>Id</th>
-            <th>Usuário</th>
             <th>Nome</th>
             <th>Telefone</th>
             <th></th>
             <th></th>
 		    <tr><td style="height: 5px;" colspan="6"></td></tr>
-		    <tr><td style="border-top: solid 1px #000000; height: 5px;" colspan="6"></td></tr>
+		    <tr><td style="border-top: solid 1px #000000; height: 5px;" colspan="5"></td></tr>
             <% @contacts.each do |contact| %>
             <tr>
                 <td><%= contact.id %></td>
-                <td><%= contact.user&.id %> </td>
                 <td>
                     <%= contact.name %>
                     <%= contact.last_name %>

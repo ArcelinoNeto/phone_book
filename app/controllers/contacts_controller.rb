@@ -1,9 +1,10 @@
 class ContactsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_contact, only: [:edit, :update, :show, :destroy]
+    before_action :owner_contact, only: [:edit, :update, :show, :destroy]
 
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contacts
   end
 
   def new
@@ -46,5 +47,11 @@ class ContactsController < ApplicationController
 
     def set_contact
       @contact = Contact.find(params[:id])
+    end
+
+    def owner_contact
+      unless current_user == @contact.user
+        redirect_to contacts_path
+      end
     end
 end
