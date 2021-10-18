@@ -10,6 +10,34 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <div class="sidebar_top">
+
+      <div>
+
+        <tr>
+          <span class="logo_cabecalho"></span>
+          <%= link_to "Home", new_user_session_path %>
+          <%= link_to "Contatos", contacts_index_path %>  
+          <%= link_to "Usuários", users_index_path %>
+          <% if current_user %>
+            Bem vindo, <%= current_user.name%>(<%= current_user.email%>)
+            <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+          <% end %>
+
+      </div>
+      
+      <% if notice %>
+        <%= notice %>
+      <% end %>
+
+    </div>
+
+    <div class="corpo">
+      <%= yield %>
+    </div>
+    
+    <div class="sidebar_bottom"></div>
+
   </body>
 </html>

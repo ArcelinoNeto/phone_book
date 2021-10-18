@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sidebar_top{
+    font-size: 15px;
+    height: 80px;
+    border-bottom: black solid 1px;
+}
+
+.logo_cabecalho {
+    height: 100%;
+    padding-left: 50px;
+    padding-bottom: 10px;
+}
+
+.sidebar_bottom{
+    font-size: 15px;
+    height: 80px;
+    border-bottom: black solid 1px;
+    width: 100%;
+    float: left;
+}
+
+.corpo{
+    position: relative;
+    width: 100%;
+}

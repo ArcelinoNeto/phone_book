@@ -1,18 +1,8 @@
 <h1>User List</h1>
 
 <div style="margin: 0 3%">
-	<table style="width: 50%;" cellspacing="0" cellpadding="0">
+	<table style="width: 90%;" cellspacing="0" cellpadding="0">
 		<tbody>
-            <tr>
-                <td><%= link_to "Inicio", root_path %></td>
-                <td>
-                    <%= current_user.name%>
-                    (<%= current_user.email%>)
-                </td>
-                <td><%= link_to "Sair", destroy_user_session_path, method: :delete %></td>
-                <td><%= link_to "Contatos", contacts_index_path %></td>
-                <td><%= link_to "Novo Usuário", new_user_registration_path %></td>
-            </tr>
             <th>Id</th>
             <th>Usuário</th>
             <th>E-mail</th>
@@ -21,17 +11,19 @@
 		    <tr><td style="height: 5px;" colspan="6"></td></tr>
 		    <tr><td style="border-top: solid 1px #000000; height: 5px;" colspan="6"></td></tr>
             <% @user.each do |user| %>
-            <tr>
-                <td><%= user.id %> </td>
-                <td>
-                    <%= user.name %>
-                </td>
-                <td>
-                    <%= user.email %>
-                </td>
-                <td>Editar</td>
-                <td>Remover</td>
-            </tr>
+                <tr>
+                    <td>
+                        <%= user.id %>
+                    </td>
+                    <td>
+                        <%= user.name %>
+                    </td>
+                    <td>
+                        <%= user.email %>
+                    </td>
+                    <td>Editar</td>
+                    <td>Remover</td>
+                </tr>
             <% end %>
         </tbody>
     </table>

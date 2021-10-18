@@ -1,45 +1,30 @@
 <h1>Contact List</h1>
 
-<% if notice %>
-    <div style="text-">
-        <%= notice %>
-    </div>
-<% end %>
-<br>
 <div style="margin: 0 3%">
-	<table style="width: 75%;" cellspacing="0" cellpadding="0">
+	<table style="width: 90%;" cellspacing="0" cellpadding="0">
 		<tbody>
-            <tr>
-                <td><%= link_to "Inicio", root_path %></td>
-                <td>
-                    <%= current_user.name%>
-                    (<%= current_user.email%>)
-                </td>
-                <td><%= link_to "Sair", destroy_user_session_path, method: :delete %></td>
-                <td><%= link_to "Usuários", users_index_path %></td>
-                <td><%= link_to "Novo Contato", new_contact_path%></td>
-            </tr>
-            <th>Id</th>
+            <th style="width: 5%;">Id</th>
             <th>Nome</th>
             <th>Telefone</th>
-            <th></th>
-            <th></th>
+            <th colspan="2"><%= link_to "Novo Contato", new_contact_path%></th>
 		    <tr><td style="height: 5px;" colspan="6"></td></tr>
 		    <tr><td style="border-top: solid 1px #000000; height: 5px;" colspan="5"></td></tr>
             <% @contacts.each do |contact| %>
-            <tr>
-                <td><%= contact.id %></td>
-                <td>
-                    <%= contact.name %>
-                    <%= contact.last_name %>
-                </td>
-                <td><%= contact.number %></td>
-                <td><%= link_to "Edit", edit_contact_path(contact) %></td>
-                <td>
-                <% if current_user.id == contact.user.id %>
-                    <%= link_to "Remover", contact_path(contact), method: :delete, data: {confirm: "Você deseja realmente remover o contato (#{contact.name} #{contact.last_name})?"} %></td>
-                <% end %>
-            </tr>
+                <tr>
+                    <td>
+                        <%= contact.id %>
+                    </td>
+                    <td>
+                        <%= contact.name %>
+                        <%= contact.last_name %>
+                    </td>
+                    <td><%= contact.number %></td>
+                    <td><%= link_to "Edit", edit_contact_path(contact) %></td>
+                    <td>
+                    <% if current_user.id == contact.user.id %>
+                        <%= link_to "Remover", contact_path(contact), method: :delete, data: {confirm: "Você deseja realmente remover o contato (#{contact.name} #{contact.last_name})?"} %></td>
+                    <% end %>
+                </tr>
             <% end %>
         </tbody>
     </table>
