@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(params_user)
-      redirect_to user_path, notice: "O contato (#{@user.name} #{@user.email}) foi alterado com sucesso!"
+      redirect_to user_path, notice: "O usuário (#{@user.name} #{@user.email}) foi alterado com sucesso!"
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to user_path, notice: "O contato (#{@user.name} #{@user.email}) foi apagado com sucesso!"
+      redirect_to user_path, notice: "O usuário (#{@user.name} #{@user.email}) foi apagado com sucesso!"
     else
       render :destroy
     end
