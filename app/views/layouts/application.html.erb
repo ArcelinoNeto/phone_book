@@ -1,9 +1,14 @@
 <!DOCTYPE html>
+
 <html>
+
   <head>
     <title>PhoneBook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,33 +16,127 @@
 
   <body>
 
-    <div class="sidebar_top">
+    <div class="sidebar">
 
-      <div>
+      <div class="logo-details">
+        <i class='bx bxl-c-plus-plus icon'></i>
+          <div class="logo_name">Phone Book</div>
+          <i class='bx bx-menu' id="btn" ></i>
+      </div>
 
-        <tr>
-          <span class="logo_cabecalho"></span>
-          <%= link_to "Home", new_user_session_path %>
-          <%= link_to "Contatos", contacts_index_path %>  
-          <%= link_to "Usuários", users_index_path %>
+      <ul class="nav-list">
+
+        <li>
+            <i class='bx bx-search' ></i>
+            <input type="text" placeholder="Search...">
+            <span class="tooltip">Search</span>
+        </li>
+
+        <li>
+          <%= link_to new_user_session_path do %>
+            <i class='bx bx-grid-alt'></i>
+            <span class="links_name">Index</span>
+          <% end %>
+          <span class="tooltip">Index</span>
+        </li>
+
+        <li>
+          <%= link_to users_index_path do %>
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Users</span>
+          <% end %>
+          <span class="tooltip">Users</span>
+        </li>
+
+        <li>
+          <%= link_to contacts_index_path do %>
+            <i class='bx bx-chat' ></i>
+            <span class="links_name">Contacts</span>
+          <% end %>
+          <span class="tooltip">Contacts</span>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="links_name">Analytics</span>
+          </a>
+          <span class="tooltip">Analytics</span>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class='bx bx-folder' ></i>
+            <span class="links_name">File Manager</span>
+          </a>
+          <span class="tooltip">Files</span>
+        </li>
+
+        <li>
+          <a href="#">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+          <span class="tooltip">Setting</span>
+        </li>
+
+        <li class="profile">
           <% if current_user %>
-            Bem vindo, <%= current_user.name%>(<%= current_user.email%>)
-            <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+
+            <div class="profile-details">
+
+              <div class="name_job">
+
+                <div class="name"><%= current_user.name%></div>
+                <div class="job"><%= current_user.email%></div>
+
+              </div>
+            </div>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class='bx bx-log-out' id="log_out" ></i>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <section class="home-section">
+
+        <div class="text">
+
+          <% if notice %>
+            <%= notice %>
           <% end %>
 
-      </div>
-      
-      <% if notice %>
-        <%= notice %>
-      <% end %>
+          <%= yield %>
+        </div>
+    </section>
 
-    </div>
+    <script>
+      let sidebar = document.querySelector(".sidebar");
+      let closeBtn = document.querySelector("#btn");
+      let searchBtn = document.querySelector(".bx-search");
 
-    <div class="corpo">
-      <%= yield %>
-    </div>
-    
-    <div class="sidebar_bottom"></div>
+      closeBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange();//calling the function(optional)
+      });
+
+      searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+        sidebar.classList.toggle("open");
+        menuBtnChange(); //calling the function(optional)
+      });
+
+      // following are the code to change sidebar button(optional)
+      function menuBtnChange() {
+      if(sidebar.classList.contains("open")){
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+      }else {
+        closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+      }
+      }
+    </script>
 
   </body>
+
 </html>
